@@ -6,6 +6,7 @@ import axios from 'axios'
 const API_KEY = "055211f04433158edb47811e0135b554";
 const HASH = "de858e129a6d31c17bc1157985f52817"
 const API_URL = 'http://gateway.marvel.com/v1/public/characters'
+const img = "/portrait_small.jpg"
 
 class App extends React.Component {
   state = {
