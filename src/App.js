@@ -6,7 +6,7 @@ import axios from 'axios'
 const API_KEY = "055211f04433158edb47811e0135b554";
 const HASH = "de858e129a6d31c17bc1157985f52817"
 const API_URL = 'http://gateway.marvel.com/v1/public/characters'
-const img = "/portrait_small.jpg"
+
 
 class App extends React.Component {
   state = {
@@ -15,6 +15,13 @@ class App extends React.Component {
   }
 
   getInfo = () => {
+    fetch(`${API_URL}?nameStartsWith=${this.state.query}&ts=1&apikey=${API_KEY}&hash=${HASH}`)
+      .then(response => response.json())
+      .then(data => this.setState({ 
+        results: data.data.results  }));   
+  }
+
+ /* getInfo = () => {
     axios.get(`${API_URL}?nameStartsWith=${this.state.query}&ts=1&apikey=${API_KEY}&hash=${HASH}`)
       .then(({ data }) => {
         this.setState({
@@ -22,7 +29,7 @@ class App extends React.Component {
                                                      
         })
       })
-  }
+  }*/
 
   handleInputChange = () => {
     this.setState({
