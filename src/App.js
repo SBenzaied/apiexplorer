@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Suggestions from './Suggestion'
 import axios from 'axios'
+import {BrowserRouter, Route} from "react-router-dom"
 
 
 const API_KEY = "055211f04433158edb47811e0135b554";
@@ -54,7 +55,20 @@ class App extends React.Component {
           onChange={this.handleInputChange}
         />
         <Suggestions results={this.state.results} />
+        
       </form>
+
+      <BrowserRouter>
+
+          <Route path="/characters"></Route>
+          <Route path="/comics"></Route>
+          <Route path="/creators"></Route>
+          <Route path="/events"></Route>
+          <Route path="/series"></Route>
+          <Route path="/stories"></Route>
+
+      </BrowserRouter>
+
       </div>
     )
   }
