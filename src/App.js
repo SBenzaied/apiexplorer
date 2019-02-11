@@ -54,6 +54,7 @@ class App extends React.Component {
         />
         <Suggestions results={this.state.results} />
       </form>
+      
       </div>
     )
   }
