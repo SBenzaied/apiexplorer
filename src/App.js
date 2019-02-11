@@ -1,8 +1,14 @@
 import React from 'react';
 import './App.css';
 import Suggestions from './Suggestion'
+import characters from './components/characters'
+import comics from './components/comics'
+import creators from './components/creators'
+import events from './components/events'
+import series from './components/series'
+import stories from './components/stories'
 import axios from 'axios'
-import {BrowserRouter, Route} from "react-router-dom"
+import {BrowserRouter, Route,Switch} from "react-router-dom"
 
 
 const API_KEY = "055211f04433158edb47811e0135b554";
@@ -59,17 +65,23 @@ class App extends React.Component {
       </form>
 
       <BrowserRouter>
+      <Switch>
+          <Route path="/characters" component={characters}></Route>
+          <Route path="/comics" component={comics}></Route>
+          <Route path="/creators" component={creators}></Route>
+          <Route path="/events" component={events}></Route>
+          <Route path="/series" component={series}></Route>
+          <Route path="/stories" component={stories}></Route>
 
-          <Route path="/characters"></Route>
-          <Route path="/comics"></Route>
-          <Route path="/creators"></Route>
-          <Route path="/events"></Route>
-          <Route path="/series"></Route>
-          <Route path="/stories"></Route>
+      </Switch>
 
-      </BrowserRouter>
+
+
+</BrowserRouter> 
 
       </div>
+
+      
     )
   }
 }
@@ -77,3 +89,13 @@ class App extends React.Component {
 export default App
 
 
+/*<BrowserRouter>
+
+          <Route path="/characters" component={characters}></Route>
+          <Route path="/comics" component={comics}></Route>
+          <Route path="/creators" component={creators}></Route>
+          <Route path="/events" component={events}></Route>
+          <Route path="/series" component={series}></Route>
+          <Route path="/stories" component={stories}></Route>
+
+      </BrowserRouter> */
