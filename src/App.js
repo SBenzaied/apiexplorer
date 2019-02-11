@@ -22,7 +22,8 @@ class App extends React.Component {
     query: '',
     results: [],
     totalResult:0,
-    filter:'characters'
+    filter:'characters',
+    clickResearch:false
   }
 
   getInfo = () => {
@@ -57,7 +58,8 @@ class App extends React.Component {
 
   handleInputChange = () => {
     this.setState({
-      query: this.search.value
+      query: this.search.value,
+      clickResearch:false
   
     }, () => {
       if (this.state.query && this.state.query.length >= 1) {
@@ -85,20 +87,39 @@ class App extends React.Component {
    onClickNext = () => {
     if(NB_OFFSET + 10 < this.state.totalResult){
         this.increaseOffsetByTen()
-        this.getInfo()
+        console.log(this.state.clickResearch)
+        if(this.state.clickResearch){
+          this.getInfoResearch()
+        }else {
+          this.getInfo()
+        }
         
       }
    }
    onClickResearch = () => {
+    this.resetResearchBar()
+    this.setState({
+      clickResearch: true,
+      query:''
+    })
       this.getInfoResearch()
    }
 
    onClickPrevious = () => {
       if(NB_OFFSET>0){
         this.decreaseOffsetByTen()
-        this.getInfo()
+        if(this.state.clickResearch){
+          this.getInfoResearch()
+        }else {
+          this.getInfo()
+        }
+        
       }
   }
+
+  resetResearchBar = () => {
+    document.getElementById("researchBar").value = ""
+}
 
   
 
@@ -107,7 +128,7 @@ class App extends React.Component {
     return (
       <div className="App">   
       <form>
-        <input
+        <input id="researchBar"
           placeholder="Search for..."
           ref={input => this.search = input}
           onChange={this.handleInputChange}
