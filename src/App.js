@@ -14,6 +14,7 @@ const LIMITE = "limit"
 const NB_LIMIT = "10"
 const OFFSET = "offset"
 let NB_OFFSET = 0
+let filter = ""
 
 
 
@@ -28,7 +29,7 @@ class App extends React.Component {
 
   getInfo = () => {
     //console.log("je veux voir ",`${API_BASE_URL}${this.state.filter}?nameStartsWith=${this.state.query}&ts=1&apikey=${API_KEY}&hash=${HASH}&${LIMITE}=${NB_LIMIT}&${OFFSET}=${NB_OFFSET}`)
-    fetch(`${API_BASE_URL}${this.state.filter}?nameStartsWith=${this.state.query}&ts=1&apikey=${apikey2}&hash=${hash2}&${LIMITE}=${NB_LIMIT}&${OFFSET}=${NB_OFFSET}`)
+    fetch(`${API_BASE_URL}${this.state.filter}?${filter}=${this.state.query}&ts=1&apikey=${apikey2}&hash=${hash2}&${LIMITE}=${NB_LIMIT}&${OFFSET}=${NB_OFFSET}`)
       .then(response => response.json())
       .then(data => this.setState({ 
         results: data.data.results,
@@ -57,6 +58,19 @@ class App extends React.Component {
   
 
   handleInputChange = () => {
+    switch(this.state.filter){
+      case "characters":
+        filter = "nameStartsWith"
+    break
+    case "comics":
+    case "series":
+    case "events":
+  filter = "titleStartsWith"
+    break
+    case "creators":
+      filter = "nameStartsWith"
+      break
+    }
     this.setState({
       query: this.search.value,
       clickResearch:false
@@ -78,10 +92,12 @@ class App extends React.Component {
   }
 
    onChangeFilter = (event) => {
-     console.log(event)
     this.setState({
       filter: event,
+      clickResearch:false,
     })
+    this.resetResearchBar()
+    
   }
 
    onClickNext = () => {
@@ -137,7 +153,7 @@ class App extends React.Component {
         <SearchButton onClickResearch = {this.onClickResearch}/>
         
 
-        <Suggestions results={this.state.results} />
+        <Suggestions results={this.state.results} filter={this.state.filter} />
         <NavButton onClickNext = {this.onClickNext}
                    onClickPrevious = {this.onClickPrevious}/>
         
@@ -156,7 +172,6 @@ class App extends React.Component {
 	        <option value="creators">creators</option>
           <option value="events">events</option>
 	        <option value="series">series</option>
-	        <option value="stories">stories</option>
         </select>
   
   );
