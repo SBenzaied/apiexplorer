@@ -60,11 +60,12 @@ class App extends React.Component {
   handleInputChange = () => {
     switch(this.state.filter){
       case "characters":
+      case "events":
         filter = "nameStartsWith"
     break
     case "comics":
     case "series":
-    case "events":
+    
   filter = "titleStartsWith"
     break
     case "creators":
