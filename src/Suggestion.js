@@ -1,10 +1,12 @@
 import React from 'react';
+//import creators from './creators.js';
 
+//<Route path="/insert/your/path/here" component={YourComponent} /> 
 
 const Suggestions = (props) => {
 
   function bar() { alert(props.filter); 
-    const url = 'google.fr';
+    const url = './creators.js';
     window.open(url, '_blank');
 }
 

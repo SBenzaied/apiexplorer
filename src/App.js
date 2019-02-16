@@ -25,6 +25,7 @@ class App extends React.Component {
     totalResult:0,
     filter:'characters',
     clickResearch:false
+    
   }
 
   getInfo = () => {
@@ -42,7 +43,8 @@ class App extends React.Component {
       .then(response => response.json())
       .then(data => this.setState({ 
         results: data.data.results,
-        totalResult:data.data.total  }));   
+        totalResult:data.data.total  
+        }));   
   }
 
  /* getInfo = () => {
@@ -55,7 +57,7 @@ class App extends React.Component {
       })
   }*/
 
-  
+ 
 
   handleInputChange = () => {
     switch(this.state.filter){
@@ -91,9 +93,11 @@ class App extends React.Component {
   decreaseOffsetByTen(){
     NB_OFFSET = NB_OFFSET - 10
   }
-
+  
    onChangeFilter = (event) => {
+   
     this.setState({
+      
       filter: event,
       clickResearch:false,
     })
@@ -152,9 +156,8 @@ class App extends React.Component {
         />
         <Filter onChangeFilter={this.onChangeFilter} value={this.state.filter}/>
         <SearchButton onClickResearch = {this.onClickResearch}/>
-        
 
-        <Suggestions results={this.state.results} filter={this.state.filter} />
+        <Suggestions results={this.state.results} filter={this.state.filter}   />
         <NavButton onClickNext = {this.onClickNext}
                    onClickPrevious = {this.onClickPrevious}/>
         
@@ -163,6 +166,8 @@ class App extends React.Component {
       </div>
     )
   }
+
+  
 }
 
  const Filter= (props) =>{
@@ -175,7 +180,6 @@ class App extends React.Component {
           <option value="events">events</option>
 	        <option value="series">series</option>
         </select>
-  
   );
 }
 
