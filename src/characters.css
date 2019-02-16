@@ -1,0 +1,28 @@
+body{
+background: black;
+
+}
+
+.titre{
+position: absolute;
+color:white;
+margin: center
+top: 0px; 
+left: 800px;
+
+}
+
+.image{
+	position: relative;
+top: 100px;
+left: 20px;
+  
+  width: 50%;
+}
+
+.text{
+position: absolute;
+color:white;
+top: 100px; 
+left: 800px;
+}
