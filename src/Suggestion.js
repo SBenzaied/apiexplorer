@@ -2,12 +2,18 @@ import React from 'react';
 
 
 const Suggestions = (props) => {
+
+  function bar() { alert(props.filter); 
+    const url = 'google.fr';
+    window.open(url, '_blank');
+}
+
   const img = "/portrait_small.jpg"
   let options
   switch (props.filter) {
     case "characters":
     options = props.results.map(r => (
-      <li key={r.id}>
+      <li onClick={() => bar()}  key={r.id}>
         {r.name}
         <img src={r.thumbnail.path + img} alt="" />
       </li>))
