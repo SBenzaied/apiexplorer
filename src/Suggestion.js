@@ -2,7 +2,11 @@ import React from 'react';
 //import creators from './creators.js';
 
 //<Route path="/insert/your/path/here" component={YourComponent} /> 
-
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
 const Suggestions = (props) => {
 
   function bar() { alert(props.filter); 
