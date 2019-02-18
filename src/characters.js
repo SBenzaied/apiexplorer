@@ -5,13 +5,13 @@ import './characters.css';
  const Characters = (props)=> {
   console.log(props)
         return (
-          <div className="creators">   
+          <div className="characters">   
 
-                <div class="titre">
+                <div class="nom">
                             <h1>Nom : {props.location.state.name}</h1>
                         </div>
 
-                        <div class="titre">
+                        <div class="description">
                             <h1>description : {props.location.state.description}</h1>
                         </div>
 

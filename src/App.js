@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Suggestions from './Suggestion'
+import ReactLoading from 'react-loading';
 
 
 const API_KEY = "055211f04433158edb47811e0135b554";
@@ -25,27 +26,39 @@ class App extends React.Component {
     query: '',
     results: [],
     totalResult:0,
-    filter:'characters',
-    clickResearch:false
+    filter:localStorage.getItem("filter") ? localStorage.getItem("filter") : 'characters',
+    clickResearch:false,
+    isLoading:true
+    
+  }
+
+  componentDidMount(){
+    if(!this.state.clickResearch){
+      this.getInfoResearch();
+    }else {   
+      this.getInfo();
+    }
+    this.saveCurrentFilterAndOffset()
     
   }
 
   getInfo = () => {
-    //console.log("je veux voir ",`${API_BASE_URL}${this.state.filter}?nameStartsWith=${this.state.query}&ts=1&apikey=${API_KEY}&hash=${HASH}&${LIMITE}=${NB_LIMIT}&${OFFSET}=${NB_OFFSET}`)
+    
+    
     fetch(`${API_BASE_URL}${this.state.filter}?${filter}=${this.state.query}&ts=1&apikey=${apikey2}&hash=${hash2}&${LIMITE}=${NB_LIMIT}&${OFFSET}=${NB_OFFSET}`)
       .then(response => response.json())
       .then(data => this.setState({ 
         results: data.data.results,
-        totalResult:data.data.total  }));   
+        totalResult:data.data.total, isLoading:false  }));   
   }
 
   getInfoResearch = () => {
-    //console.log("je veux voir ",`${API_BASE_URL}${this.state.filter}?nameStartsWith=${this.state.query}&ts=1&apikey=${API_KEY}&hash=${HASH}&${LIMITE}=${NB_LIMIT}&${OFFSET}=${NB_OFFSET}`)
     fetch(`${API_BASE_URL}${this.state.filter}?ts=1&apikey=${apikey2}&hash=${hash2}&${LIMITE}=${NB_LIMIT}&${OFFSET}=${NB_OFFSET}`)
       .then(response => response.json())
       .then(data => this.setState({ 
         results: data.data.results,
-        totalResult:data.data.total  
+        totalResult:data.data.total,
+        isLoading:false
         }));   
   }
 
@@ -66,7 +79,8 @@ class App extends React.Component {
     }
     this.setState({
       query: this.search.value,
-      clickResearch:false
+      clickResearch:false,
+      isLoading:true
   
     }, () => {
       if (this.state.query && this.state.query.length >= 1) {
@@ -89,16 +103,20 @@ class App extends React.Component {
     this.setState({
       
       filter: event,
-      clickResearch:false,
-    })
-    this.resetResearchBar()
-    
+      clickResearch:true,
+      isLoading:true
+    }, () =>
+      (this.resetResearchBarAndNbOffset(),
+      this.getInfoResearch() ,this.saveCurrentFilterAndOffset())
+    )  
   }
 
    onClickNext = () => {
     if(NB_OFFSET + 10 < this.state.totalResult){
         this.increaseOffsetByTen()
-        console.log(this.state.clickResearch)
+        this.setState({
+          isLoading:true
+        })
         if(this.state.clickResearch){
           this.getInfoResearch()
         }else {
@@ -107,18 +125,14 @@ class App extends React.Component {
         
       }
    }
-   onClickResearch = () => {
-    this.resetResearchBar()
-    this.setState({
-      clickResearch: true,
-      query:''
-    })
-      this.getInfoResearch()
-   }
+   
 
    onClickPrevious = () => {
       if(NB_OFFSET>0){
         this.decreaseOffsetByTen()
+        this.setState({
+          isLoading:true
+        })
         if(this.state.clickResearch){
           this.getInfoResearch()
         }else {
@@ -128,8 +142,21 @@ class App extends React.Component {
       }
   }
 
-  resetResearchBar = () => {
-    document.getElementById("researchBar").value = ""
+  resetResearchBarAndNbOffset = () => {
+    document.getElementById("researchBar").value = "";
+    NB_OFFSET = 0
+}
+saveCurrentFilterAndOffset(){
+  localStorage.setItem("filter",this.state.filter)
+  localStorage.setItem("offset",NB_OFFSET)
+} 
+
+setCurrentFilterAndOffset(){
+  this.setState({
+   filter:localStorage.getItem("filter")
+  })
+  NB_OFFSET = localStorage.getItem("offset")
+  
 }
 
   
@@ -147,9 +174,9 @@ class App extends React.Component {
           onChange={this.handleInputChange}
         />
         <Filter onChangeFilter={this.onChangeFilter} value={this.state.filter}/>
-        <SearchButton onClickResearch = {this.onClickResearch}/>
-
-        <Suggestions results={this.state.results} filter={this.state.filter}  />
+        {this.state.isLoading ?
+        <ReactLoading type="spin" color="#a34e4e" height={667} width={375} />
+        :<Suggestions results={this.state.results} filter={this.state.filter}  />}
         <NavButton onClickNext = {this.onClickNext}
                    onClickPrevious = {this.onClickPrevious}/>
 
@@ -188,13 +215,7 @@ class App extends React.Component {
   );
 }
 
-function SearchButton(props) {
-  return (
-    <button type="button" onClick={props.onClickResearch}>
-      Rechercher
-    </button>
-  );
-}
+
 function PreviousButton(props) {
   return (
     <button id = "prevBtnId" type="button" onClick={props.onClickPrevious} >

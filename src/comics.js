@@ -11,7 +11,7 @@ import React from 'react';
                         </div>
 
                         <div class="description">
-                            <h1>Nombre de page : {props.location.state.description}</h1>
+                            <h1>Description: {props.location.state.description}</h1>
                         </div>
 
                         <div class="page">
