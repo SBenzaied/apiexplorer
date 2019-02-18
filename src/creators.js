@@ -1,24 +1,20 @@
 import React from 'react';
-import './creators.css';
  
  
- class Creators extends React.Component {
-
-
-    render() {
-    
+ const Creators = (props)=> {
+  console.log(props)
         return (
           <div className="creators">   
 
-                <div class="titre">
-                            <h1>Titre</h1>
+                <div class="fullName">
+                            <h1>Nom : {props.location.state.name}</h1>
                         </div>
 
                     <div class="image">
                         <section id="image">
                         
-                            <img class="frame-img" alt="Old Man Quill (2019) #1" title="Old Man     Quill (2019) #1" 
-                            src="https://i.annihil.us/u/prod/marvel/i/mg/c/10/5c523cdb19b5d/clean.jpg"
+                            <img class="frame-img" alt="" title={props.location.state.image}
+                            src={props.location.state.image}
                             width="550" height="845"></img>
                         </section>
                     </div>
@@ -26,6 +22,6 @@ import './creators.css';
           </div>
         )
       }
- }
+
  
  export default Creators

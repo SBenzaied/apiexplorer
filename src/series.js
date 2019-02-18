@@ -1,24 +1,37 @@
 import React from 'react';
-import './creators.css';
  
  
- class Creators extends React.Component {
-
-
-    render() {
-    
+ const Series = (props)=> {
+  
         return (
-          <div className="creators">   
+          <div className="series">   
 
                 <div class="titre">
-                            <h1>Titre</h1>
+                            <h1>Titre : {props.location.state.title}</h1>
+                        </div>
+
+                        <div class="description">
+                            <h1>Description: {props.location.state.description}</h1>
+                        </div>
+
+                        <div class="startYear">
+                            <h1>Année de début : {props.location.state.startYear}</h1>
+                        </div>
+                        <div class="endYear">
+                            <h1>Année de fin : {props.location.state.endYear}</h1>
+                        </div>
+                        <div class="rating">
+                            <h1>Rating : {props.location.state.rating}</h1>
+                        </div>
+                        <div class="type">
+                            <h1>Type : {props.location.state.type}</h1>
                         </div>
 
                     <div class="image">
                         <section id="image">
                         
-                            <img class="frame-img" alt="Old Man Quill (2019) #1" title="Old Man     Quill (2019) #1" 
-                            src="https://i.annihil.us/u/prod/marvel/i/mg/c/10/5c523cdb19b5d/clean.jpg"
+                            <img class="frame-img" alt="" title={props.location.state.image}
+                            src={props.location.state.image}
                             width="550" height="845"></img>
                         </section>
                     </div>
@@ -26,6 +39,6 @@ import './creators.css';
           </div>
         )
       }
- }
+
  
- export default Creators
+ export default Series

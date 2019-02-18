@@ -1,15 +1,7 @@
 import React from 'react';
 import './App.css';
 import Suggestions from './Suggestion'
-import Details from './details'
 
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Switch,
-  Redirect
-} from 'react-router-dom'
 
 const API_KEY = "055211f04433158edb47811e0135b554";
 const HASH = "de858e129a6d31c17bc1157985f52817"

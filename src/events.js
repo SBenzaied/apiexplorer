@@ -1,22 +1,26 @@
 import React from 'react';
  
  
- const Comics = (props)=> {
-  console.log(props)
+ const Events = (props)=> {
+  
         return (
-          <div className="comics">   
+          <div className="Events">   
 
                 <div class="titre">
                             <h1>Titre : {props.location.state.title}</h1>
                         </div>
 
                         <div class="description">
-                            <h1>Nombre de page : {props.location.state.description}</h1>
+                            <h1>Description: {props.location.state.description}</h1>
                         </div>
 
-                        <div class="page">
-                            <h1>Nombre de page : {props.location.state.nbPage}</h1>
+                        <div class="start">
+                            <h1>Année de début : {props.location.state.start}</h1>
                         </div>
+                        <div class="end">
+                            <h1>Année de fin : {props.location.state.end}</h1>
+                        </div>
+                       
 
                     <div class="image">
                         <section id="image">
@@ -32,4 +36,4 @@ import React from 'react';
       }
 
  
- export default Comics
+ export default Events
