@@ -9,48 +9,41 @@ import {
 } from 'react-router-dom'
 const Suggestions = (props) => {
 
-  function bar() { alert(props.filter); 
-    const url = './creators.js';
-    window.open(url, '_blank');
-}
+
 
   const img = "/portrait_small.jpg"
   let options
   switch (props.filter) {
     case "characters":
     options = props.results.map(r => (
-      <li onClick={() => bar()}  key={r.id}>
-        {r.name}
-        <img src={r.thumbnail.path + img} alt="" />
-      </li>))
+      
+      <li key={r.id}>
+      <Link to={{pathname : "/characters", state:{test:"toto"}}}> {r.name} <img src={r.thumbnail.path + img} alt="" /></Link></li>
+     ))
+
     break
     case "comics":
     options = props.results.map(r => (
       <li key={r.id}>
-        {r.title}
-        <img src={r.thumbnail.path + img} alt="" />
-      </li>))
+      <Link to="/comics"> {r.title} <img src={r.thumbnail.path + img} alt="" /></Link></li>
+      ))
       break
     case "series":
     options = props.results.map(r => (
       <li key={r.id}>
-        {r.title}
-        <img src={r.thumbnail.path + img} alt="" />
-      </li>))
+       <Link to="/series"> {r.title} <img src={r.thumbnail.path + img} alt="" /></Link></li>
+      ))
       break
     case "events":
     options = props.results.map(r => (
       <li key={r.id}>
-        {r.title}
-        <img src={r.thumbnail.path + img} alt="" />
-      </li>))
+      <Link to="/characters_events"> {r.title} <img src={r.thumbnail.path + img} alt="" /></Link></li>
+        ))
     break
     case "creators":
       options = props.results.map(r => (
         <li key={r.id}>
-          {r.fullName}
-          <img src={r.thumbnail.path + img} alt="" />
-        </li>))
+         <Link to="/creators"> {r.fullName} <img src={r.thumbnail.path + img} alt="" /></Link></li>))
       break
   }
   return <ul>{options}</ul>

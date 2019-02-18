@@ -3,7 +3,7 @@ import React from 'react';
 import './characters.css';
  
  
- class characters_events extends React.Component {
+ class Characters_events extends React.Component {
 
 
     render() {
@@ -49,7 +49,7 @@ import './characters.css';
       }
  }
  
- export default characters_events
+ export default Characters_events
 
 
  

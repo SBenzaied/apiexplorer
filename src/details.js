@@ -2,7 +2,7 @@ import React from 'react';
 import './details.css';
  
  
- class details extends React.Component {
+ class Details extends React.Component {
 
 
     render() {
@@ -63,8 +63,8 @@ import './details.css';
 
                         <section id="description">
 
-                            <h2>Descrpition</h2>
-                            <p>Descrpition</p>
+                            <h2>Description</h2>
+                            <p>Description</p>
 
                         </section>
                         </div>
@@ -80,7 +80,7 @@ import './details.css';
       }
  }
  
- export default details
+ export default Details
 
 
 

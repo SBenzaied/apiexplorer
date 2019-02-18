@@ -1,7 +1,15 @@
 import React from 'react';
 import './App.css';
 import Suggestions from './Suggestion'
-import axios from 'axios'
+import Details from './details'
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  Redirect
+} from 'react-router-dom'
 
 const API_KEY = "055211f04433158edb47811e0135b554";
 const HASH = "de858e129a6d31c17bc1157985f52817"
@@ -15,6 +23,8 @@ const NB_LIMIT = "10"
 const OFFSET = "offset"
 let NB_OFFSET = 0
 let filter = ""
+
+
 
 
 
@@ -46,18 +56,6 @@ class App extends React.Component {
         totalResult:data.data.total  
         }));   
   }
-
- /* getInfo = () => {
-    axios.get(`${API_URL}?nameStartsWith=${this.state.query}&ts=1&apikey=${API_KEY}&hash=${HASH}`)
-      .then(({ data }) => {
-        this.setState({
-          results: data.data.results 
-                                                     
-        })
-      })
-  }*/
-
- 
 
   handleInputChange = () => {
     switch(this.state.filter){
@@ -147,6 +145,8 @@ class App extends React.Component {
   render() {
     
     return (
+
+      
       <div className="App">   
       <form>
         <input id="researchBar"
@@ -157,9 +157,11 @@ class App extends React.Component {
         <Filter onChangeFilter={this.onChangeFilter} value={this.state.filter}/>
         <SearchButton onClickResearch = {this.onClickResearch}/>
 
-        <Suggestions results={this.state.results} filter={this.state.filter}   />
+        <Suggestions results={this.state.results} filter={this.state.filter}  />
         <NavButton onClickNext = {this.onClickNext}
                    onClickPrevious = {this.onClickPrevious}/>
+
+
         
       </form>
       
@@ -169,6 +171,8 @@ class App extends React.Component {
 
   
 }
+
+
 
  const Filter= (props) =>{
   console.log("test " ,props.onChangeFilter)
