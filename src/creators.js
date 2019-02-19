@@ -1,5 +1,5 @@
 import React from 'react';
- 
+import './creators.css'
  
  const Creators = (props)=> {
   console.log(props)
@@ -7,7 +7,7 @@ import React from 'react';
           <div className="creators">   
 
                 <div class="fullName">
-                            <h1>Nom : {props.location.state.name}</h1>
+                            <h1>{props.location.state.name}</h1>
                         </div>
 
                     <div class="image">

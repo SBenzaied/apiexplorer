@@ -8,12 +8,10 @@ import './characters.css';
           <div className="characters">   
 
                 <div class="nom">
-                            <h1>Nom : {props.location.state.name}</h1>
-                        </div>
+                        <h1> {props.location.state.name}</h1>
+                </div>
 
-                        <div class="description">
-                            <h1>description : {props.location.state.description}</h1>
-                        </div>
+                        
 
                     <div class="image">
                         <section id="image">
@@ -23,6 +21,10 @@ import './characters.css';
                             width="550" height="845"></img>
                         </section>
                     </div>
+
+                    <div class="description">
+                            <h1> {props.location.state.description}</h1>
+                        </div>
           
           </div>
         )

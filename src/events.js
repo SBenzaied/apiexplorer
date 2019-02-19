@@ -1,5 +1,5 @@
 import React from 'react';
- 
+import './events.css';
  
  const Events = (props)=> {
   
@@ -7,19 +7,10 @@ import React from 'react';
           <div className="Events">   
 
                 <div class="titre">
-                            <h1>Titre : {props.location.state.title}</h1>
+                            <h1>{props.location.state.title}</h1>
                         </div>
 
-                        <div class="description">
-                            <h1>Description: {props.location.state.description}</h1>
-                        </div>
-
-                        <div class="start">
-                            <h1>Année de début : {props.location.state.start}</h1>
-                        </div>
-                        <div class="end">
-                            <h1>Année de fin : {props.location.state.end}</h1>
-                        </div>
+                        
                        
 
                     <div class="image">
@@ -30,6 +21,12 @@ import React from 'react';
                             width="550" height="845"></img>
                         </section>
                     </div>
+
+                    <div class="description">
+                            <h1>Année de début : {props.location.state.start}</h1>
+                            <h1>Année de fin : {props.location.state.end}</h1>
+                            <h1>Description: {props.location.state.description}</h1>
+                        </div>
           
           </div>
         )

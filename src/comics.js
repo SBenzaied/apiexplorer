@@ -1,5 +1,5 @@
 import React from 'react';
- 
+import './comics.css';
  
  const Comics = (props)=> {
   console.log(props)
@@ -7,15 +7,16 @@ import React from 'react';
           <div className="comics">   
 
                 <div class="titre">
-                            <h1>Titre : {props.location.state.title}</h1>
+                            <h1>{props.location.state.title}</h1>
                         </div>
-
+                        
                         <div class="description">
-                            <h1>Description: {props.location.state.description}</h1>
+                            <h1>{props.location.state.description}</h1>
+                            <h1>{props.location.state.nbPage} page(s)</h1>
                         </div>
 
                         <div class="page">
-                            <h1>Nombre de page : {props.location.state.nbPage}</h1>
+                            
                         </div>
 
                     <div class="image">
