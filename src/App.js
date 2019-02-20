@@ -174,8 +174,9 @@ setCurrentFilterAndOffset(){
           onChange={this.handleInputChange}
         />
         <Filter onChangeFilter={this.onChangeFilter} value={this.state.filter}/>
+        
         {this.state.isLoading ?
-        <ReactLoading type="spin" color="#a34e4e"  height={667} width={375}  />
+        <ReactLoading class="load" type="spin" color="#a34e4e"  height={600} width={400}  />
         :<Suggestions results={this.state.results} filter={this.state.filter}  />}
         <NavButton onClickNext = {this.onClickNext}
                    onClickPrevious = {this.onClickPrevious}/>

@@ -11,7 +11,11 @@ body{
   height: 40vmin;
 }
 
-
+.load{
+  position: relative;
+  left: 37%;
+  margin-top: 5%; 
+}
 
 .App-header {
   background-color: #282c34;
