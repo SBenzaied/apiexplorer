@@ -219,7 +219,7 @@ setCurrentFilterAndOffset(){
 
 function PreviousButton(props) {
   return (
-    <button id = "prevBtnId" type="button" onClick={props.onClickPrevious} >
+    <button class="prec" id = "prevBtnId" type="button" onClick={props.onClickPrevious} >
       précédent
     </button>
   );

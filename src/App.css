@@ -32,6 +32,9 @@ body{
   color: #61dafb;
 }
 
+.prec{
+  margin-top: 30px;
+}
 
 @keyframes App-logo-spin {
   from {
