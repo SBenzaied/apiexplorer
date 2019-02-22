@@ -1,0 +1,22 @@
+body{
+    background: black;
+    
+    }
+    
+    .fullName{
+
+    color:white;
+    top: 0px; 
+    position: absolute; 
+    left: 50%; 
+   
+    }
+    
+    .image{
+    position: relative;
+    top: 100px;
+    left: 20px;
+    width: 50%;
+    }
+    
+  
